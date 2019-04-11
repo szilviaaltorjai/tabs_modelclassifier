@@ -5,9 +5,7 @@ import dash_core_components as dcc
 from tabs import tab_1, tab_2, tab_3
 import pandas as pd
 from dash.dependencies import Input, Output
-from pathlib import Path
 
-# filepath=Path.joinpath(Path.cwd(), '00_resources', 'final_probs.csv')
 filepath='00_resources/final_probs.csv'
 df=pd.read_csv(filepath)
 
