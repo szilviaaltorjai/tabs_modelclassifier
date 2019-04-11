@@ -3,8 +3,8 @@ from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_core_components as dcc
 from tabs import tab_1, tab_2, tab_3
-# import pandas as pd
-# from dash.dependencies import Input, Output
+import pandas as pd
+
 #
 # filepath='00_resources/final_probs.csv'
 # df=pd.read_csv(filepath)
