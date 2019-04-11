@@ -3,11 +3,11 @@ from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_core_components as dcc
 from tabs import tab_1, tab_2, tab_3
-import pandas as pd
+# import pandas as pd
 from dash.dependencies import Input, Output
-
-filepath='00_resources/final_probs.csv'
-df=pd.read_csv(filepath)
+#
+# filepath='00_resources/final_probs.csv'
+# df=pd.read_csv(filepath)
 
 
 ## Instantiante Dash
@@ -47,22 +47,22 @@ def render_content(tab):
               [Input('page-2-radios', 'value')])
 def page_2_radios(value):
     return 'You have selected "{}"'.format(value)
-
-# Tab 3 callback
-@app.callback(dash.dependencies.Output('page-3-content', 'children'),
-              [dash.dependencies.Input('page-3-dropdown', 'value')])
-def page_3_dropdown(value):
-    name=df.loc[value, 'Name']
-    return f'You have selected "{name}"'
-
-
-# Tab 3 callback
-@app.callback(dash.dependencies.Output('survival-prob', 'children'),
-              [dash.dependencies.Input('page-3-dropdown', 'value')])
-def page_3_dropdown(value):
-    survival=df.loc[value, 'survival_prob']
-    survival=round(survival*100)
-    return f'Predicted probability of survival is {survival}%'
+#
+# # Tab 3 callback
+# @app.callback(dash.dependencies.Output('page-3-content', 'children'),
+#               [dash.dependencies.Input('page-3-dropdown', 'value')])
+# def page_3_dropdown(value):
+#     name=df.loc[value, 'Name']
+#     return f'You have selected "{name}"'
+#
+#
+# # Tab 3 callback
+# @app.callback(dash.dependencies.Output('survival-prob', 'children'),
+#               [dash.dependencies.Input('page-3-dropdown', 'value')])
+# def page_3_dropdown(value):
+#     survival=df.loc[value, 'survival_prob']
+#     survival=round(survival*100)
+#     return f'Predicted probability of survival is {survival}%'
 
 ####### Run the app #######
 if __name__ == '__main__':
