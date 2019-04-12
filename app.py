@@ -31,17 +31,17 @@ app.layout = html.Div([
 
 
 ############ Callbacks
-#
-# @app.callback(Output('tabs-content-example', 'children'),
-#               [Input('tabs-example', 'value')])
-# def render_content(tab):
-#     if tab == 'tab-1-example':
-#         return tab_1.tab_1_layout
-#     elif tab == 'tab-2-example':
-#         return tab_2.tab_2_layout
-#     elif tab == 'tab-3-example':
-#         return tab_3.tab_3_layout
-#
+
+@app.callback(Output('tabs-content-example', 'children'),
+              [Input('tabs-example', 'value')])
+def render_content(tab):
+    if tab == 'tab-1-example':
+        return tab_1.tab_1_layout
+    elif tab == 'tab-2-example':
+        return tab_2.tab_2_layout
+    elif tab == 'tab-3-example':
+        return tab_3.tab_3_layout
+
 # # Tab 2 callback
 # @app.callback(Output('page-2-content', 'children'),
 #               [Input('page-2-radios', 'value')])
