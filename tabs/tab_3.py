@@ -11,13 +11,22 @@ index=df['Name'].index.values
 nameslist = list(zip(index, names))
 
 tab_3_layout = html.Div([
-    html.H1('Page 3'),
-    html.Div('Select a passenger to view their predicted survival:'),
-    dcc.Dropdown(
-        id='page-3-dropdown',
-        options=[{'label': k, 'value': i} for i,k in nameslist],
-        value=nameslist[0][0]
-    ),
-    html.Div(id='page-3-content'),
-    html.Div(id='survival-prob')
+    html.H3('Results for Testing Dataset'),
+    html.Div([
+        html.Div([
+            html.Div('Select a passenger to view their predicted survival:'),
+            dcc.Dropdown(
+                id='page-3-dropdown',
+                options=[{'label': k, 'value': i} for i,k in nameslist],
+                value=nameslist[0][0]
+            ),
+
+        ],className='three columns'),
+        html.Div([
+            html.Div(id='page-3-content'),
+            html.Div(id='survival-prob'),
+            html.Table(id='survival-characteristics')
+        ],className='nine columns'),
+    ],className='twelve columns'),
+
 ])
