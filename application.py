@@ -5,6 +5,7 @@ import dash_core_components as dcc
 import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
+import pickle
 from tabs import tab_1, tab_2, tab_3, tab_4
 from utils import display_eval_metrics, Viridis
 
@@ -119,20 +120,42 @@ def final_prediction(family, age, cabin, title, sex, embark):
     keys=['family', 'age', 'cabin', 'title', 'sex', 'embark']
     dict6=dict(zip(keys, inputs))
     df=pd.DataFrame([dict6])
+    # create the features we'll need to run our logreg model.
     df['age']=pd.to_numeric(df.age, errors='coerce')
+    df['family']=pd.to_numeric(df.family, errors='coerce')
     df['third']=np.where(df.cabin=='Third',1,0)
     df['second']=np.where(df.cabin=='Second',1,0)
     df['female']=np.where(df.sex=='Female',1,0)
     df['cherbourg']=np.where(df.embark=='Cherbourg',1,0)
     df['queenstown']=np.where(df.embark=='Queenstown',1,0)
-    df['age2028']=np.where((df.age>=20)&(df.age<28))
-    df['age2838']=np.where((df.age>=28)&(df.age<38))
-    df['age3880']=np.where((df.age>=38)&(df.age<80))
+    df['age2028']=np.where((df.age>=20)&(df.age<28),1,0)
+    df['age2838']=np.where((df.age>=28)&(df.age<38),1,0)
+    df['age3880']=np.where((df.age>=38)&(df.age<80),1,0)
     df['mrs']=np.where(df.title=='Mrs.', 1,0)
     df['miss']=np.where(df.title=='Miss', 1,0)
     df['vip']=np.where(df.title=='VIP', 1,0)
-    df=df.drop(['family', 'age', 'cabin', 'title', 'sex', 'embark'], axis=1)
-    return(list(df.columns))
+    # drop unnecessary columns, and reorder columns to match the logreg model.
+    df=df.drop(['age', 'cabin', 'title', 'sex', 'embark'], axis=1)
+    df=df[['family', 'female', 'second', 'third', 'cherbourg', 'queenstown', 'age2028',
+    'age2838', 'age3880', 'mrs', 'miss', 'vip']]
+    # unpickle the final model
+    file = open('resources/final_logreg_model.pkl', 'rb')
+    logreg=pickle.load(file)
+    file.close()
+    # predict on the user-input values (need to create an array for this)
+    firstrow=df.loc[0]
+    print('firstrow', firstrow)
+    myarray=firstrow.values
+    print('myarray', myarray)
+    thisarray=myarray.reshape((1, myarray.shape[0]))
+    print('thisarray', thisarray)
+
+
+    # tryagain=np.array([4, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0])
+    # tryagain=tryagain.reshape((1, tryagain.shape[0]))
+    prob=logreg.predict_proba(thisarray)
+    final_prob=round(float(prob[0][1])*100,1)
+    return(f'Probability of Survival: {final_prob}%')
 
 
 

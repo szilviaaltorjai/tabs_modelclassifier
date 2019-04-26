@@ -50,7 +50,6 @@ tab_4_layout = html.Div([
 
     html.Div([
         html.Div('Select:', className='one column'),
-        # Title,
         html.Div([
             html.Div('Title'),
             dcc.RadioItems(
@@ -82,12 +81,11 @@ tab_4_layout = html.Div([
     html.Br(),
     # Output results
     html.Div([
-        html.Div(id='user-inputs-box', style={'text-align':'center','fontSize':24}, ),
-        html.Div(id='final_prediction', style={'text-align':'center','fontSize':24})
+        html.Div(id='finalfinal', children='Final Selections:', style={'text-align':'center','fontSize':24}),
+        html.Div(id='user-inputs-box', style={'text-align':'center','fontSize':24}),
+        html.Div(id='final_prediction', style={'color':'red','text-align':'center','fontSize':24})
     ],className='twelve columns'),
-    # html.Div(id='hidden-value',
-    #         children='this is the hidden message',
-    #         style={'display': 'none'})
+
 
 
 ])
