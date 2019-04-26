@@ -4,7 +4,7 @@ import dash_html_components as html
 import pandas as pd
 
 
-filepath='00_resources/final_probs.csv'
+filepath='resources/final_probs.csv'
 df=pd.read_csv(filepath)
 names=df['Name'].values
 index=df['Name'].index.values

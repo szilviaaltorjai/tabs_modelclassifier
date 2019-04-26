@@ -6,7 +6,7 @@ from tabs import tab_1, tab_2, tab_3
 import pandas as pd
 
 
-filepath='00_resources/final_probs.csv'
+filepath='resources/final_probs.csv'
 df=pd.read_csv(filepath)
 
 
