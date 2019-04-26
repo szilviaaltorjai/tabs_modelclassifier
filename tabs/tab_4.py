@@ -2,7 +2,6 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-import dash_daq as daq
 
 filepath='resources/final_probs.csv'
 df=pd.read_csv(filepath)
@@ -81,7 +80,6 @@ tab_4_layout = html.Div([
     html.Br(),
     # Output results
     html.Div([
-        html.Div(id='finalfinal', children='Final Selections:', style={'text-align':'center','fontSize':24}),
         html.Div(id='user-inputs-box', style={'text-align':'center','fontSize':24}),
         html.Div(id='final_prediction', style={'color':'red','text-align':'center','fontSize':24})
     ],className='twelve columns'),
