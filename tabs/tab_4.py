@@ -80,8 +80,8 @@ tab_4_layout = html.Div([
     html.Br(),
     # Output results
     html.Div([
-        html.Div(id='user-inputs-box', style={'text-align':'center','fontSize':24}),
-        html.Div(id='final_prediction', style={'color':'red','text-align':'center','fontSize':24})
+        html.Div(id='user-inputs-box', style={'text-align':'center','fontSize':18}),
+        html.Div(id='final_prediction', style={'color':'red','text-align':'center','fontSize':18})
     ],className='twelve columns'),
 
 

@@ -23,8 +23,8 @@ tab_3_layout = html.Div([
 
         ],className='three columns'),
         html.Div([
-            html.Div(id='page-3-content', style={'fontSize':24}),
-            html.Div(id='survival-prob', style={'fontSize':24, 'color':'red'}),
+            html.Div(id='page-3-content', style={'fontSize':18}),
+            html.Div(id='survival-prob', style={'fontSize':18, 'color':'red'}),
             html.Table(id='survival-characteristics')
         ],className='nine columns'),
     ],className='twelve columns'),
