@@ -12,7 +12,7 @@ df=pd.read_csv(filepath)
 
 ## Instantiante Dash
 app = dash.Dash()
-server = app.server
+application = app.server
 app.config['suppress_callback_exceptions'] = True
 app.css.append_css({
     'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
@@ -66,4 +66,4 @@ def page_3_dropdown(value):
 
 ####### Run the app #######
 if __name__ == '__main__':
-    app.run_server()
+    application.run(debug=True, port=8080)
