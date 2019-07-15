@@ -8,5 +8,4 @@ This repo is a template for capstone presentations of machine learning. Though s
 * A feature whereby the model receives new user inputs and makes predictions based on the new data.
 * An interactive user-interface deployed on a cloud platform and accessible to potential reviewers.
 
-The final app may be viewed on AWS:
-http://titanic-classifier-dev.us-east-1.elasticbeanstalk.com/
+Click (here)[http://titanicclassifier-env.g8sipcfcmu.us-east-1.elasticbeanstalk.com/] to view the final dashboard.
