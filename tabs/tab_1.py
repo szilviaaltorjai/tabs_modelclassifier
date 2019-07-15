@@ -15,7 +15,7 @@ tab_1_layout = html.Div([
         dcc.Markdown("* A predictive model that has been trained on a portion of the data, and tested on a set-aside portion."),
         dcc.Markdown("* Evaluation metrics showing the performance of the model on the testing data."),
         dcc.Markdown("* Individual results of the testing dataset, for further analysis of incorrect predictions."),
-        dcc.Markdown("* A feature to receive new user inputs and makes predictions based on the new data."),
+        dcc.Markdown("* A feature to receive new user inputs that makes predictions based on the new data."),
         dcc.Markdown("* An interactive user interface deployed on a cloud platform and accessible to potential reviewers."),
         html.A('View code on github', href='https://github.com/austinlasseter/titanic_classifier'),
     ],className='ten columns'),
