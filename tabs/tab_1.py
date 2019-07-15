@@ -5,13 +5,18 @@ import base64
 
 boat_photo=base64.b64encode(open('resources/Titanic.png', 'rb').read())
 
-lorum='Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
 tab_1_layout = html.Div([
     html.H3('Introduction'),
     html.Div([
     html.Div([
-        html.Div(id='page-1-content', children=lorum*5),
+        dcc.Markdown("This dashboard is a template for capstone presentations of machine learning. Though simple, it has several important features that should be imitated in any capstone:"),
+        dcc.Markdown("* A cleaned dataset with a clearly defined problem and target variable."),
+        dcc.Markdown("* A predictive model that has been trained on a portion of the data, and tested on a set-aside portion."),
+        dcc.Markdown("* Evaluation metrics showing the performance of the model on the testing data."),
+        dcc.Markdown("* Individual results of the testing dataset, for further analysis of incorrect predictions."),
+        dcc.Markdown("* A feature to receive new user inputs and makes predictions based on the new data."),
+        dcc.Markdown("* An interactive user interface deployed on a cloud platform and accessible to potential reviewers."),
         html.A('View code on github', href='https://github.com/austinlasseter/titanic_classifier'),
     ],className='ten columns'),
     html.Div([
