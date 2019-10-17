@@ -17,10 +17,10 @@ index=df['FIPS2'].index.values
 nameslist = list(zip(index, names))
 
 tab_4_layout = html.Div([
-    html.H3('Results for Testing Dataset'),
+    html.H3('Predicted probability of the county being above the national average of diabetes prevalence (random forest)'),
     html.Div([
         html.Div([
-            html.Div('Select a county code to view their predicted diabetes prevalence:'),
+            html.Div('Select a county code:'),
             dcc.Dropdown(
                 id='page-4-dropdown',
                 options=[{'label': k, 'value': i} for i,k in nameslist],
