@@ -1,9 +1,9 @@
+"""
 import pandas as pd
 import plotly
 import plotly.graph_objs as go
 import pickle
 from sklearn.metrics import roc_auc_score
-from tabs.tab_2 import choices
 
 Viridis=[
 "#440154", "#440558", "#450a5c", "#450e60", "#451465", "#461969",
@@ -20,136 +20,26 @@ Viridis=[
 "#cbe02d", "#d6e22b", "#e1e329", "#eae428", "#f5e626", "#fde725"]
 
 
+### Comparison of Possible Models
 
-def display_eval_metrics(value):
+compare_models=pd.read_pickle('resources/compare_models.pkl')
+mydata1 = go.Bar(
+    x=compare_models.loc['RMSE'].index,
+    y=compare_models.loc['RMSE'],
+    name=compare_models.index[0],
+    marker=dict(color=Viridis[50])
+)
+mydata2 = go.Bar(
+    x=compare_models.loc['R2'].index,
+    y=compare_models.loc['R2'],
+    name=compare_models.index[1],
+    marker=dict(color=Viridis[30])
+)
+mylayout = go.Layout(
+    title='Comparison of Linear Models with and without physical activity',
+    xaxis = dict(title = 'Predictive models'), # x-axis label
+    yaxis = dict(title = 'RMSE matrixes'), # y-axis label
 
-    ### Comparison of Possible Models
-    if value==choices[0]:
-        compare_models=pd.read_pickle('resources/compare_models.pkl')
-        mydata1 = go.Bar(
-            x=compare_models.loc['F1 score'].index,
-            y=compare_models.loc['F1 score'],
-            name=compare_models.index[0],
-            marker=dict(color=Viridis[50])
-        )
-        mydata2 = go.Bar(
-            x=compare_models.loc['Accuracy'].index,
-            y=compare_models.loc['Accuracy'],
-            name=compare_models.index[1],
-            marker=dict(color=Viridis[30])
-        )
-        mydata3 = go.Bar(
-            x=compare_models.loc['AUC score'].index,
-            y=compare_models.loc['AUC score'],
-            name=compare_models.index[2],
-            marker=dict(color=Viridis[10])
-        )
-        mylayout = go.Layout(
-            title='Logistic Regression has the highest accuracy and ROC-AUC score',
-            xaxis = dict(title = 'Predictive models'), # x-axis label
-            yaxis = dict(title = 'Score'), # y-axis label
-
-        )
-        fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout)
-        return fig
-
-    ### Final Model Metrics
-    elif value==choices[1]:
-        file = open('resources/eval_scores.pkl', 'rb')
-        evals=pickle.load(file)
-        file.close()
-        mydata = [go.Bar(
-            x=list(evals.keys()),
-            y=list(evals.values()),
-            marker=dict(color=Viridis[::12])
-        )]
-
-        mylayout = go.Layout(
-            title='Evaluation Metrics for Logistic Regression Model (Testing Dataset = 127 passengers)',
-            xaxis = {'title': 'Metrics'},
-            yaxis = {'title': 'Percent'},
-
-        )
-        fig = go.Figure(data=mydata, layout=mylayout)
-        return fig
-
-    # Receiver Operating Characteristic (ROC): Area Under Curve
-    elif value==choices[2]:
-
-        file = open('resources/y_test.pkl', 'rb')
-        y_test=pickle.load(file)
-        file.close()
-        file = open('resources/predictions.pkl', 'rb')
-        predictions=pickle.load(file)
-        file.close()
-        file = open('resources/FPR.pkl', 'rb')
-        FPR=pickle.load(file)
-        file.close()
-        file = open('resources/TPR.pkl', 'rb')
-        TPR=pickle.load(file)
-        file.close()
-
-        roc_score=round(100*roc_auc_score(y_test, predictions),1)
-        trace0=go.Scatter(
-                x=FPR,
-                y=TPR,
-                mode='lines',
-                name=f'AUC: {roc_score}',
-                marker=dict(color=Viridis[10])
-                )
-        trace1=go.Scatter(
-                x=[0,1],
-                y=[0,1],
-                mode='lines',
-                name='Baseline Area: 50.0',
-            marker=dict(color=Viridis[50])
-                )
-        layout=go.Layout(
-            title='Receiver Operating Characteristic (ROC): Area Under Curve',
-            xaxis={'title': 'False Positive Rate (100-Specificity)','scaleratio': 1,'scaleanchor': 'y'},
-            yaxis={'title': 'True Positive Rate (Sensitivity)'}
-            )
-        data=[trace0, trace1]
-        fig = dict(data=data, layout=layout)
-        return fig
-
-    # Confusion Matrix
-    elif value==choices[3]:
-        file = open('resources/y_test.pkl', 'rb')
-        y_test=pickle.load(file)
-        file.close()
-        cm=pd.read_pickle('resources/confusion_matrix.pkl')
-        trace = go.Table(
-            header=dict(values=cm.columns,
-                        line = dict(color='#7D7F80'),
-                        fill = dict(color=Viridis[55]),
-                        align = ['left'] * 5),
-            cells=dict(values=[cm[f'n={len(y_test)}'], cm['pred: survival'], cm['pred: death']],
-                       line = dict(color='#7D7F80'),
-                       fill = dict(color='white'),
-                       align = ['left'] * 5))
-
-        layout = go.Layout(
-            title = f'Logistic Regression Model (Testing Dataset)',
-        )
-
-        data = [trace]
-        fig = dict(data=data, layout=layout)
-        return fig
-
-    # Odds of Survival (Coefficients)
-    elif value==choices[4]:
-        coeffs=pd.read_csv('resources/coefficients.csv')
-        mydata = [go.Bar(
-            x=coeffs['feature'],
-            y=coeffs['coefficient'],
-            marker=dict(color=Viridis[::-6])
-        )]
-        mylayout = go.Layout(
-            title='Married women in 1st class had better odds of survival, especially if younger than 38',
-            xaxis = {'title': 'Passenger Features'},
-            yaxis = {'title': 'Odds of Survival'},
-
-        )
-        fig = go.Figure(data=mydata, layout=mylayout)
-        return fig
+)
+fig = go.Figure(data=[mydata1, mydata2], layout=mylayout)
+"""
