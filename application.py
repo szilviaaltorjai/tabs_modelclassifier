@@ -44,14 +44,19 @@ def render_content(tab):
     elif tab == 'tab-4-template':
         return tab_4.tab_4_layout
 
-# Tab 2 callbacks
+# Tab 3 callback # 1
+@app.callback(Output('page-3-content', 'children'),
+              [Input('page-4-dropdown', 'value')])
+def page_3_dropdown(value):
+    name=df.loc[value, 'Name']
+    return f'You have selected "{name}"'
 
-# @app.callback(Output('page-2-graphic', 'figure'),
-#               [Input('page-2-radios', 'value')])
-# def radio_results(value):
-#     return display_eval_metrics(value)
-
-# Tab 4 Callback # 1
+# Tab 3 callback # 2
+@app.callback(Output('survival-prob', 'children'),
+              [Input('page-4-dropdown', 'value')])
+def page_4_diabetes(value):
+    diabetes=df.loc[value, 'diabetes_prob']
+    return f'Predicted probability of diabetes is {diabetes}%'
 
 
 
