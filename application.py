@@ -16,6 +16,10 @@ app.config['suppress_callback_exceptions'] = True
 app.css.append_css({
     'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
 })
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
 app.title='Diabetes!'
 
 
@@ -44,18 +48,19 @@ def render_content(tab):
     elif tab == 'tab-4-template':
         return tab_4.tab_4_layout
 
-# Tab 3 callback # 1
-@app.callback(Output('page-3-content', 'children'),
-              [Input('page-4-dropdown', 'value')])
-def page_3_dropdown(value):
-    name=df.loc[value, 'Name']
-    return f'You have selected "{name}"'
+# Tab 4 callback # 2
 
-# Tab 3 callback # 2
-@app.callback(Output('survival-prob', 'children'),
+@app.callback(Output('Probability', 'children'),
               [Input('page-4-dropdown', 'value')])
 def page_4_diabetes(value):
-    diabetes=df.loc[value, 'diabetes_prob']
+    filepath='resources/predict_proba.csv'
+    df=pd.read_csv(filepath)
+    names=df['Name'].values
+    index=df['Name'].index.values
+    nameslist = list(zip(index, names))
+
+    df=df[df['Name']==value]
+    diabetes=df.loc[value, 'Probability']
     return f'Predicted probability of diabetes is {diabetes}%'
 
 

@@ -11,16 +11,16 @@ tab_1_layout = html.Div([
     html.Div([
     html.Div([
         dcc.Markdown("This dashboard is a summary of the final project for the DCT35 course"),
-        dcc.Markdown("* Project aim: assess the importance of aggregated level of physical activity when predicting diabetes in local areas"),
-        dcc.Markdown("* Method: predict the proportion of adults with diabetes with- and without accounting for physical activity"),
-        dcc.Markdown("* Results: TBC"),
+        dcc.Markdown("* Project aim: to predicting diabetes in local areas"),
+        dcc.Markdown("* Method: Predict the proportion of adults with diabetes with- and without accounting for physical activity (linear model). Predict the probability that the area is above the national average of diabetes prevalence (random forest)"),
+        dcc.Markdown("* Results: Accounting for physical activity improves the model predicting power. The probability of a county being above the national average ranges between 46%-60%."),
         html.A('View code on github', href='https://github.com/szilviaaltorjai/tabs_modelclassifier'),
-    ],className='eight columns'),
+    ],className='nine columns'),
     html.Div([
     html.Img(src='data:image/png;base64,{}'.format(boat_photo.decode()), style={'height':'400px'}),
-    ],className='two columns'),
+    ],className='three columns'),
 
 
-    ],className='two columns'),
+    ],className='seven columns'),
 
 ])
