@@ -19,16 +19,33 @@ app.css.append_css({
 
 app.title='Diabetes!'
 
+### Style the tabs
+tabs_styles = {
+    'height': '44px'
+}
+tab_style = {
+    'borderBottom': '1px solid #d6d6d6',
+    'padding': '6px',
+    'fontWeight': 'bold'
+}
+
+tab_selected_style = {
+    'borderTop': '1px solid #d6d6d6',
+    'borderBottom': '1px solid #d6d6d6',
+    'backgroundColor': '#119DFF',
+    'color': 'white',
+    'padding': '6px'
+}
 
 ## Layout
 app.layout = html.Div([
-    html.H1('Predicting diabetes in US counties'),
+    html.H1('Predicting diabetes in US counties', style={'backgroundColor':'lightblue'}),
     dcc.Tabs(id="tabs-template", value='tab-1-template', children=[
-        dcc.Tab(label='Introduction', value='tab-1-template'),
-        dcc.Tab(label='Model Evaluation', value='tab-2-template'),
-        dcc.Tab(label='User Inputs', value='tab-4-template'),
-    ]),
-    html.Div(id='tabs-content-template'),
+        dcc.Tab(label='Introduction', value='tab-1-template', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Model Evaluation', value='tab-2-template', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='User Inputs', value='tab-4-template', style=tab_style, selected_style=tab_selected_style),
+    ], style=tabs_styles),
+    html.Div(id='tabs-content-template')
 #    dcc.Graph(figure=fig, id=fig)
 ])
 
@@ -47,7 +64,7 @@ def render_content(tab):
 
 # Tab 4 callback # 2
 
-@app.callback(Output('Probability', 'children'),
+@app.callback(Output('diabetes', 'children'),
               [Input('page-4-dropdown', 'value')])
 def page_4_diabetes(value):
     filepath='resources/predict_proba.csv'

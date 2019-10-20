@@ -41,6 +41,7 @@ mydata2 = go.Bar(
 #    secondary_y=True,
     marker=dict(color=Viridis[30])
 )
+
 mylayout = go.Layout(
     title='Comparison of Linear Models with and without physical activity',
     xaxis = dict(title = 'Predictive models'), # x-axis label
