@@ -10,13 +10,14 @@ from tabs import tab_1, tab_2, tab_4
 #from utils import fig
 
 ## Instantiante Dash
-app = dash.Dash()
-application = app.server
+#app = dash.Dash()
+#app = app.server
+#app.css.append_css({
+#    'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
+#})
+app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
+server = app.server
 app.config['suppress_callback_exceptions'] = True
-app.css.append_css({
-    'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
-})
-
 app.title='Diabetes!'
 
 ### Style the tabs
@@ -81,4 +82,4 @@ def page_4_diabetes(value):
 
 ####### Run the app #######
 if __name__ == '__main__':
-    application.run(debug=True)
+    app.run_server(debug=True)

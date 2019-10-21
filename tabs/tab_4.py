@@ -29,7 +29,7 @@ tab_4_layout = html.Div([
             ),
         ],className='five columns'),
         html.Div(id='Probability', className='six columns'),
-
+        html.Div(id='diabetes', children=''),
     ],className='twelve columns'),
 
 ])
